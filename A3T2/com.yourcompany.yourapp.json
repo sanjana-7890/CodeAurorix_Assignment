@@ -1,0 +1,9 @@
+{
+    "name": "com.yourcompany.yourapp",
+    "description": "Native Messaging Host Example",
+    "path": "C:/Uses/adity/Downloads/A3T2/native_messaging_host.py",
+    "type": "stdio",
+    "allowed_origins": [
+      "chrome-extension://kdbdmfejeilbpliaclkjpfbacgblafmg/"
+    ]
+  }

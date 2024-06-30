@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+    <script>
+        const socket = new WebSocket('ws://127.0.0.1:5000/ws');
+
+        socket.onopen = function() {
+            console.log('Connected to WebSocket server');
+            // Send initial URL message
+            socket.send(JSON.stringify({ "url": "https://ums.lpu.in/lpuums/" }));
+        };
+
+        socket.onmessage = function(event) {
+            console.log('Received message from server:', event.data);
+        };
+
+        socket.onclose = function() {
+            console.log('Disconnected from WebSocket server');
+        };
+
+        socket.onerror = function(error) {
+            console.error('WebSocket error:', error.message);
+        };
+
+        // Example operation messages
+        function sendOperationMessage(operation) {
+            socket.send(JSON.stringify({ "operation": operation }));
+        }
+
+        // Example usage
+        setTimeout(() => sendOperationMessage("get_info"), 1000);
+        setTimeout(() => sendOperationMessage("get_subdomains"), 2000);
+        setTimeout(() => sendOperationMessage("get_asset_domains"), 3000);
+    </script>
+</body>
+</html>

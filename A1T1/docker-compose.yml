@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./logs:/var/log/nginx  # Mount logs directory to capture logs
+    networks:
+      - a1t1_proxy-net
+
+  responder1:
+    build: ./responder1
+    container_name: responder1-container
+    networks:
+      - a1t1_proxy-net
+
+  responder2:
+    build: ./responder2
+    container_name: responder2-container
+    networks:
+      - a1t1_proxy-net
+
+networks:
+  a1t1_proxy-net:
+    driver: bridge

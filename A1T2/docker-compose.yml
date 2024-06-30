@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    ports:
+      - "8080:80"
+    networks:
+      - proxy-net
+      - no-internet-net
+
+  responder1:
+    build:
+      context: ./responder1
+    container_name: responder1-container
+    networks:
+      - no-internet-net
+
+  responder2:
+    build:
+      context: ./responder2
+    container_name: responder2-container
+    networks:
+      - no-internet-net
+
+networks:
+  proxy-net:
+    external: true
+  no-internet-net:
+    external: true

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' ws:;">
+    <title>WebSocket Client</title>
+    <!-- Your other meta tags, stylesheets, etc. -->
+</head>
+<body>
+    <script>
+        // Client-side WebSocket code here
+        let ws1 = new WebSocket('ws://localhost/responder1');
+        ws1.onopen = () => console.log('Connected to Responder 1');
+        ws1.onmessage = (message) => console.log('Message from Responder 1:', message.data);
+
+        let ws2 = new WebSocket('ws://localhost/responder2');
+        ws2.onopen = () => console.log('Connected to Responder 2');
+        ws2.onmessage = (message) => console.log('Message from Responder 2:', message.data);
+    </script>
+</body>
+</html>
